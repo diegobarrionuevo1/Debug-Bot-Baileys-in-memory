@@ -50,22 +50,19 @@ export const flowUsuario = bot
         await flowDynamic("⏳ por favor solo espere a que el asistente responda 🍀🤖...")
     })
     .addAction(async (ctx, { flowDynamic, provider }) => {
+        console.log( "no debe ejecutar 0");
         await delay(2000)
         await flowDynamic("🌟 Para comenzar, necesitaré algunos detallitos sobre ti..."
         )
     })
     .addAction(async (ctx, { flowDynamic, provider }) => {
-
+        console.log( "no debe ejecutar 1");
         await flowDynamic("Por favor, escribe *únicamente* tu *primer nombre*: ✏️");
-
     })
     .addAction(
-        { capture: true, idle: inactividad }
+        { capture: true,  }
         , async (ctx, { fallBack, gotoFlow, flowDynamic, state, provider }) => {
-            if (ctx?.idleFallBack) {
-                console.log("fallBack");
-                return gotoFlow(flujoFinal)
-            }
+            console.log( "no debe ejecutar 2");
             let nombre = ctx.body.trim()
             // Verifica si el nombre está vacío o contiene espacios
             if (!nombre || nombre.includes(' ')) {
@@ -73,8 +70,7 @@ export const flowUsuario = bot
                 return fallBack();
             } else {
                 await state.update({ name: `${ctx.body}` });
-
-                await flowDynamic("¡Magnífico, ${nombre}! Sigamos con el siguiente paso. 🚀");
+                await flowDynamic(`¡Magnífico, ${nombre}! Sigamos con el siguiente paso. 🚀`);
 
                 return gotoFlow(apellido);
             }
@@ -83,16 +79,12 @@ export const flowUsuario = bot
 export const apellido = bot
     .addKeyword(bot.EVENTS.ACTION)
     .addAction(async (ctx, { flowDynamic, provider }) => {
+        console.log( "no debe ejecutar 3");
         await flowDynamic("Ahora, por favor escribe tu *apellido*: 📜");
     })
     .addAction(
-        { capture: true, idle: inactividad },
+        { capture: true, },
         async (ctx, { state, fallBack, gotoFlow, flowDynamic, provider }) => {
-
-            if (ctx?.idleFallBack) {
-                console.log("fallBack");
-                return gotoFlow(flujoFinal)
-            }
             const apellido = ctx.body.trim(); // Obtén el apellido del usuario
             if (!apellido || apellido.includes(' ')) {
 
@@ -112,6 +104,7 @@ export const creandoUsuario = bot
         { delay: 1000 })
     .addAction(
         async (ctx, { state, flowDynamic, endFlow, provider }) => {
+            console.log("no debe ejecutar 4");
             let currentState = state.getMyState();
             //limpiamos
             state.clear();

@@ -11,7 +11,7 @@
     },
     "keywords": [],
     "dependencies": {
-        "@bot-whatsapp/bot": "^0.0.216-alpha.0",
+        "@bot-whatsapp/bot": "^0.0.222-alpha.0",
         "@bot-whatsapp/cli": "latest",
         "@bot-whatsapp/database": "latest",
         "@bot-whatsapp/portal": "latest",

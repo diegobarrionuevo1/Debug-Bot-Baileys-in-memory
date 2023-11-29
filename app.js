@@ -16,11 +16,9 @@ const flowMenu = bot
             "*4*. opcion",
             "*5*. Cancelar"])
     })
-    .addAction({ capture: true, idle: inactividad },
+    .addAction({ capture: true, },
         async (ctx, { gotoFlow, endFlow}) => {
-            if (ctx?.idleFallBack) {
-                return gotoFlow(flujoFinal)
-            }
+
             // Asumiendo que ctx.body contiene la respuesta del usuario
             const userResponse = parseInt(ctx.body, 10); // Parsea la respuesta del usuario a un número
             // Para opciones válidas, usamos una estructura switch para manejar cada opción individualmente
